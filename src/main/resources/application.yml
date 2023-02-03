@@ -1,0 +1,10 @@
+spring:
+   datasource:
+       password: Sun4o9998!
+       url: jdbc:mysql://127.0.0.1:3306/dbsunny
+       username: root
+   jpa:
+       database-platform: org.hibernate.dialect.MySQLDialect
+       hibernate:
+           ddl-auto: create
+       show-sql: true

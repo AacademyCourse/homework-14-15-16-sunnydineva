@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.Instant;
+import java.util.Set;
+
 @Entity
 @Data
 public class User {
@@ -18,4 +20,6 @@ public class User {
     @Column(name = "e-mail")
     private String email;
     private Instant createdAt;
+    @OneToMany(mappedBy  = "user", fetch = FetchType.LAZY)
+    private Set<Address> addresses;
 }

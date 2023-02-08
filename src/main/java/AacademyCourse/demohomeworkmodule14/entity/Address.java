@@ -14,4 +14,6 @@ public class Address {
     private String street;
     @Column(name = "street_no")
     private String streetNumber;
+    @ManyToOne
+    private User user;
 }

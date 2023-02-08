@@ -66,7 +66,7 @@ public class CommandRunner implements CommandLineRunner {
         Optional<User> user1 = userRepository.findById(1L);
         user1.ifPresent(value -> System.out.println());
 
-        Optional<User> user2 = userRepository.findById(1L);
+        Optional<User> user2 = userRepository.findById(2L);
         user2.ifPresent(value -> System.out.println());
     }
 
@@ -74,7 +74,7 @@ public class CommandRunner implements CommandLineRunner {
         Optional<Address> address1 = addressRepository.findById(1L);
         address1.ifPresent(value -> System.out.println());
 
-        Optional<Address> address2 = addressRepository.findById(1L);
+        Optional<Address> address2 = addressRepository.findById(2L);
         address2.ifPresent(value -> System.out.println());
     }
 }

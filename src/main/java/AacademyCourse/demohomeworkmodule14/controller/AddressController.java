@@ -13,11 +13,6 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
-    @GetMapping("/sayHello")
-    public String sayAddress() {
-        return "Hello from address controller";
-    }
-
     @GetMapping("/get/{id}")
     public Optional<Address> getAddress(@PathVariable Long id){
         return addressService.getById(id);

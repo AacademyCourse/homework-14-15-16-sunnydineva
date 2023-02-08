@@ -9,9 +9,10 @@ import java.util.Optional;
 
 @Service
 public class AddressService {
-    @Autowired
+
     AddressRepository addressRepository;
 
+    @Autowired
     public AddressService(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }

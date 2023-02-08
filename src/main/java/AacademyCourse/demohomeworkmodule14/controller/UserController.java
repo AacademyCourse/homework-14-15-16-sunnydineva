@@ -13,13 +13,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/sayHello")
-    public String sayHello() {
-        return "Hello from user controller";
-    }
-
     @GetMapping("/get/{id}")
-    public Optional<User> getUser(Long id) {
+    public Optional<User> getUser(@PathVariable Long id) {
         return userService.getById(id);
     }
 
@@ -36,7 +31,7 @@ public class UserController {
     }
 
     @DeleteMapping("/remove/{id}")
-    public String deleteUser(Long id){
+    public String deleteUser(@PathVariable Long id){
         this.userService.deleteById(id);
         return String.format("User with %s id is deleted", id);
     }

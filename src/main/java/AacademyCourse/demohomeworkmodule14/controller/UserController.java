@@ -18,7 +18,7 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @PostMapping(path = "add")
+    @PostMapping(path = "/add")
     public User createUser(@RequestBody User user) {
         User userToBeCreated = new User();
         userToBeCreated.setFirstName(user.getFirstName());

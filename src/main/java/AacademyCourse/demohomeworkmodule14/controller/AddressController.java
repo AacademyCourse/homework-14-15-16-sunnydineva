@@ -4,7 +4,6 @@ import AacademyCourse.demohomeworkmodule14.entity.Address;
 import AacademyCourse.demohomeworkmodule14.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
@@ -18,7 +17,7 @@ public class AddressController {
         return addressService.getById(id);
     }
 
-    @PostMapping(path = "/add")
+    @PostMapping("/add")
     public Address createAddress(@RequestBody Address address) {
         Address addressToBeCreated = new Address();
         addressToBeCreated.setCountry(address.getCountry());
@@ -29,7 +28,7 @@ public class AddressController {
         return addressService.saveAddress(addressToBeCreated);
     }
 
-    @DeleteMapping(path = "/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public String deleteAddress(@PathVariable Long id){
         this.addressService.deleteById(id);
         return String.format("Address with %s id is deleted", id);

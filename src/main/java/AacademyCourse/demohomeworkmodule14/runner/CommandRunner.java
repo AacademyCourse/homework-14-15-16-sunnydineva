@@ -20,13 +20,13 @@ public class CommandRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createUserTable();
-        getUserTable();
-        createAddressTable();
-        getAddressTable();
+        createUser();
+        getUser();
+        createAddress();
+        getAddress();
     }
 
-    public void createUserTable() {
+    public void createUser() {
         User user1 = new User();
         user1.setFirstName("UserFirstName1");
         user1.setLastName("UserLastName1");
@@ -44,7 +44,7 @@ public class CommandRunner implements CommandLineRunner {
         userRepository.save(user2);
     }
 
-    public void createAddressTable() {
+    public void createAddress() {
         Address address1 = new Address();
         address1.setCountry("Country1");
         address1.setCity("City1");
@@ -62,19 +62,19 @@ public class CommandRunner implements CommandLineRunner {
         addressRepository.save(address2);
     }
 
-    public void getUserTable() {
+    public void getUser() {
         Optional<User> user1 = userRepository.findById(1L);
         user1.ifPresent(value -> System.out.println());
 
-        Optional<User> user2 = userRepository.findById(1L);
+        Optional<User> user2 = userRepository.findById(2L);
         user2.ifPresent(value -> System.out.println());
     }
 
-    public void getAddressTable() {
+    public void getAddress() {
         Optional<Address> address1 = addressRepository.findById(1L);
         address1.ifPresent(value -> System.out.println());
 
-        Optional<Address> address2 = addressRepository.findById(1L);
+        Optional<Address> address2 = addressRepository.findById(2L);
         address2.ifPresent(value -> System.out.println());
     }
 }

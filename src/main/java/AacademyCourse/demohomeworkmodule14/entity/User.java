@@ -1,12 +1,18 @@
 package AacademyCourse.demohomeworkmodule14.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
 import java.time.Instant;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +32,12 @@ public class User {
     private Instant createdAt;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set <Address> addresses;
 
-    @Column
+
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
     @JoinTable(name = "user_roles",
              joinColumns = {@JoinColumn (name = "user_id")},
     inverseJoinColumns = {@JoinColumn(name = "role_id")})

@@ -27,25 +27,43 @@ public class CommandRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        Role role1 = new Role();
+        role1.setType(roleType.ADMIN);
+
+        Role role2 = new Role();
+        role2.setType(roleType.CLIENT);
+
+        Role role3 = new Role();
+        role3.setType(roleType.USER);
+
+        Role role4 = new Role();
+        role4.setType(roleType.ADMIN);
+
+        Role role5 = new Role();
+        role5.setType(roleType.ADMIN);
+
+        Set<Role> roles1 = Set.of(role1, role2, role3, role4);
+        Set<Role> roles2 = Set.of(role2, role3, role4, role5);
+
+        roleRepository.save(role1);
+        roleRepository.save(role2);
+        roleRepository.save(role3);
+        roleRepository.save(role4);
+        roleRepository.save(role5);
+
         User user1 = new User();
         user1.setFirstName("UserFirstName1");
         user1.setLastName("UserLastName1");
         user1.setEmail("user1@email.com");
         user1.setCreatedAt(Instant.now());
+        user1.setRoles(roles1);
 
         User user2 = new User();
         user2.setFirstName("UserFirstName2");
         user2.setLastName("UserLastName2");
         user2.setEmail("user2@email.com");
         user2.setCreatedAt(Instant.now());
-
-        Set<User> users1 = new HashSet<>();
-        users1.add(user1);
-        Set<User> users2 = new HashSet<>();
-        users2.add(user2);
-        Set<User> users3 = new HashSet<>();
-        users3.add(user1);
-        users3.add(user2);
+        user2.setRoles(roles2);
 
         Address address1 = new Address();
         address1.setCountry("Country1");
@@ -68,54 +86,8 @@ public class CommandRunner implements CommandLineRunner {
         address3.setStreetNumber("StNo3");
         address3.setUser(user1);
 
-// userRepository.save(user1) not working with the following lines:
-//        Set<Address> addresses1 = new HashSet<>();
-//        addresses1.add(address3);
-//
-//        Set<Address> addresses2 = new HashSet<>();
-//        addresses2.add(address1);
-//        addresses2.add(address2);
-//
-//        user1.setAddresses(addresses1);
-//        user2.setAddresses(addresses2);
-
-        Role role1 = new Role();
-        role1.setType(roleType.ADMIN);
-        role1.setUsers(users1); //user1
-
-        Role role2 = new Role();
-        role2.setType(roleType.CLIENT);
-        role2.setUsers(users2); //user2
-
-        Role role3 = new Role();
-        role3.setType(roleType.USER);
-        role3.setUsers(users3); //users3 = user1 & user2
-
-// when using the following lines: "Hibernate: insert into user_role..." only once
-// userRepository.save(user1) not working
-
-//        Set<Role> roles1 = new HashSet<>();
-//        Role role4 = new Role();
-//        role4.setType(roleType.ADMIN);
-//        roles1.add(role4);
-//variant A of roles1
-//        Set<Role> roles2 = new HashSet<>();
-//        Role role5 = new Role();
-//        role5.setType(roleType.ADMIN);
-//        roles2.add(role5);
-//variant B of roles1
-//        Set<Role> roles2 = new HashSet<>();
-//        roles2.add(role2);
-
-//        user1.setRoles(roles1);
-//        user2.setRoles(roles2);
-
         userRepository.save(user1);
         userRepository.save(user2);
-
-        roleRepository.save(role1);
-        roleRepository.save(role2);
-        roleRepository.save(role3);
 
         addressRepository.save(address1);
         addressRepository.save(address2);

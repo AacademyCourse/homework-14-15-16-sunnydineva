@@ -1,9 +1,15 @@
 package AacademyCourse.demohomeworkmodule14.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "addresses")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +21,10 @@ public class Address {
     @Column(name = "street_no")
     private String streetNumber;
 
+
     @ManyToOne()
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @JsonBackReference
+    //@JoinColumn(name = "user_id", referencedColumnName = "id") //works without this
+       private User user;
 
 }

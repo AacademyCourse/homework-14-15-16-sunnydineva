@@ -22,8 +22,10 @@ public class UserService {
         userToBeCreated.setFirstName(user.getFirstName());
         userToBeCreated.setLastName(user.getLastName());
         userToBeCreated.setEmail(user.getEmail());
+        userToBeCreated.setCreatedAt(user.getCreatedAt());
         userToBeCreated.setPhone(user.getPhone());
-
+        userToBeCreated.setAddresses(user.getAddresses());  // ?
+        userToBeCreated.setRoles(user.getRoles()); // ?
         return userRepository.save(userToBeCreated);
     }
 

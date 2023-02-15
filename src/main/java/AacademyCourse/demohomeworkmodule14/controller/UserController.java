@@ -4,7 +4,6 @@ import AacademyCourse.demohomeworkmodule14.entity.User;
 import AacademyCourse.demohomeworkmodule14.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
@@ -18,7 +17,7 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @PostMapping(path = "/add")
+    @PostMapping("/add")
     public User createUser(@RequestBody User user) {
         User userToBeCreated = new User();
         userToBeCreated.setFirstName(user.getFirstName());
@@ -26,7 +25,8 @@ public class UserController {
         userToBeCreated.setEmail(user.getPhone());
         userToBeCreated.setCreatedAt(user.getCreatedAt());
         userToBeCreated.setPhone(user.getPhone());
-
+        userToBeCreated.setAddresses(user.getAddresses());  // ?
+        userToBeCreated.setRoles(user.getRoles());  // ?
         return this.userService.saveUser(userToBeCreated);
     }
 

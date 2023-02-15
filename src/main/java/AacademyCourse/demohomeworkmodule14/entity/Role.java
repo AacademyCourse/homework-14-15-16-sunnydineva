@@ -4,27 +4,25 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "addresses")
-public class Address {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
-    private String country;
-    private String city;
-    private String street;
 
-    @Column(name = "street_no")
-    private String streetNumber;
+    @Column
+    private roleType type;
 
-
-    @ManyToOne()
+    @Column
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     @JsonBackReference
-    //@JoinColumn(name = "user_id", referencedColumnName = "id") //works without this
-       private User user;
-
+    private Set<User> users;
 }

@@ -5,7 +5,7 @@ import AacademyCourse.demohomeworkmodule14.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AddressService {
@@ -17,18 +17,18 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
+
+    public Optional<Address> getById(Long id){
+        return addressRepository.findById(id);
+    }
+
     public Address saveAddress(Address address){
         Address addressToBeCreated = new Address();
         addressToBeCreated.setCountry(address.getCountry());
         addressToBeCreated.setCity(address.getCountry());
         addressToBeCreated.setStreet(address.getStreet());
         addressToBeCreated.setStreet(address.getStreetNumber());
-
         return addressRepository.save(addressToBeCreated);
-    }
-
-    public Optional<Address> getById(Long id){
-        return addressRepository.findById(id);
     }
 
     public void deleteById(Long id){
